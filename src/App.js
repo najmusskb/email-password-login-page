@@ -1,5 +1,6 @@
 import  {getAuth} from 'firebase/auth';
 import  './App.css';
+import RegisterReactbootstrap from './components/login/RegisterReactbootstrap';
 import app from './firebase/Firebase.init';
 
 
@@ -15,18 +16,25 @@ const handleregister = (e) =>{
 
 }
 
+const HandleEmailOnblur=(e)=>{
+  console.log(e.target.value);
+
+}
+
+
+const HandlePasswordBlue = (e) =>{
+  console.log(e.target.value)
+  
+}
+
 function App (){
   return (
     <div className='App'>
 
-      <form onSubmit={handleregister}>
 
-    <input type="email" name="email" id="" placeholder='your Email' /> 
-    <br />
-    <input type="password" name="password" placeholder='Enter Your Password' />
-    <br />
-    <button type="submit">Register</button>
-    </form>
+
+<RegisterReactbootstrap></RegisterReactbootstrap>
+ 
 
     </div>
   )
