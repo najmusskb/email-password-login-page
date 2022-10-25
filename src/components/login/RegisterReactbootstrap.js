@@ -1,4 +1,4 @@
-import { createUserWithEmailAndPassword, getAuth, sendEmailVerification } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, sendEmailVerification, updateProfile } from 'firebase/auth';
 import React, { useState } from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -44,6 +44,7 @@ const RegisterReactbootstrap = () => {
         setSuccess(true)
         form.reset();
         varifyEmail();
+        UpdateUserName ();
       })
       .catch(error => {
         console.error("error", error);
@@ -63,6 +64,17 @@ const RegisterReactbootstrap = () => {
 
   }
 
+
+  const  UpdateUserName = (name)=>{
+    updateProfile(auth.currentUser,{
+        display:name 
+    })
+    .then (()=>{
+      console.log('display name Update');
+    })
+    .catch(error => console.error(error))
+    
+  }
   return (
     <div onSubmit={HandleSubmit} className='w-25 mx-auto border rounded p-3  bg-info mt-5 shadow'>
       <h3 className='text-light text-center p-3'>Please Register !!!! </h3>
