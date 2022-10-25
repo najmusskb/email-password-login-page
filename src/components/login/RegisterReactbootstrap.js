@@ -10,11 +10,14 @@ const auth = getAuth (app)
 const RegisterReactbootstrap = () => {
 
   const [passwordError, setPasswordError ]= useState('');
+  const [success , setSuccess]=useState(false)
     const HandleSubmit =(event)=>{
+      setSuccess(false)
         event.preventDefault();
+        const form = event.target;
     // console.log(event.target.email.value);
-    const email=event.target.email.value;
-    const  password=event.target.password.value;
+    const email=form.email.value;
+    const  password=form.password.value;
     console.log(email,password);
 
     if(!/(?=.*[A-Z].*[A-Z])/.test(password)){
@@ -37,9 +40,12 @@ const RegisterReactbootstrap = () => {
     .then( result => {
         const user=result.user
         console.log(user)
+        setSuccess(true)
+        form.reset();
     })
     .catch(error=>{
         console.error("error",error);
+        setPasswordError(error.message);
     })
     }
     return (
@@ -58,8 +64,8 @@ const RegisterReactbootstrap = () => {
         <Form.Check type="checkbox" label="Check me out" />
       </Form.Group>
 
-      <p className='text-danger'>{passwordError}</p>
-
+      <p className=' text-danger  bg-light  p-4  shadow  rounded '>{passwordError}</p>
+      {success && <p className='text-success'> User Create a SuccessFully </p>}
       <Button variant="primary" type="submit">
         Register
       </Button>
