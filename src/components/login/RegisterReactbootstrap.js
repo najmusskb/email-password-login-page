@@ -46,13 +46,12 @@ const RegisterReactbootstrap = () => {
         varifyEmail();
         UpdateUserName ();
       })
+      
       .catch(error => {
         console.error("error", error);
         setPasswordError(error.message);
       })
   }
-
-
 
   // varify email :
   const varifyEmail = () => {
